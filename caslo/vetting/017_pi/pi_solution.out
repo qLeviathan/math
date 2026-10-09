@@ -1,0 +1,43 @@
+OAI.PiExponent.main : And
+  (∀ (ν : Real),
+    @LT.lt.{0} Real Real.instLT
+        (@OfNat.ofNat.{0} Real (nat_lit 2)
+          (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast
+            (@Nat.instAtLeastTwoHAddOfNat (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))
+              (@Nat.instNeZeroSucc (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0)))))))
+        ν →
+      @Exists.{1} Int fun (Q : Int) =>
+        And (@LE.le.{0} Int Int.instLEInt (@OfNat.ofNat.{0} Int (nat_lit 2) (@instOfNat (nat_lit 2))) Q)
+          (∀ (p q : Int),
+            @LE.le.{0} Int Int.instLEInt Q q →
+              @LE.le.{0} Real Real.instLE
+                (@HPow.hPow.{0, 0, 0} Real Real Real (@instHPow.{0, 0} Real Real Real.instPow)
+                  (@Int.cast.{0} Real Real.instIntCast q) (@Neg.neg.{0} Real Real.instNeg ν))
+                (@abs.{0} Real Real.lattice Real.instAddGroup
+                  (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub) Real.pi
+                    (@HDiv.hDiv.{0, 0, 0} Real Real Real
+                      (@instHDiv.{0} Real (@DivInvMonoid.toDiv.{0} Real Real.instDivInvMonoid))
+                      (@Int.cast.{0} Real Real.instIntCast p) (@Int.cast.{0} Real Real.instIntCast q))))))
+  (@Eq.{1} Real
+    (@SupSet.sSup.{0} Real Real.instSupSet
+      (@Set.ofPred.{0} Real fun (ν : Real) =>
+        And (@LT.lt.{0} Real Real.instLT (@OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero)) ν)
+          (@Set.Infinite.{0} Rat
+            (@Set.ofPred.{0} Rat fun (r : Rat) =>
+              And (@LE.le.{0} Nat instLENat (@OfNat.ofNat.{0} Nat (nat_lit 2) (instOfNatNat (nat_lit 2))) (Rat.den r))
+                (And
+                  (@LT.lt.{0} Real Real.instLT
+                    (@OfNat.ofNat.{0} Real (nat_lit 0) (@Zero.toOfNat0.{0} Real Real.instZero))
+                    (@abs.{0} Real Real.lattice Real.instAddGroup
+                      (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub) Real.pi
+                        (@Rat.cast.{0} Real Real.instRatCast r))))
+                  (@LT.lt.{0} Real Real.instLT
+                    (@abs.{0} Real Real.lattice Real.instAddGroup
+                      (@HSub.hSub.{0, 0, 0} Real Real Real (@instHSub.{0} Real Real.instSub) Real.pi
+                        (@Rat.cast.{0} Real Real.instRatCast r)))
+                    (@HPow.hPow.{0, 0, 0} Real Real Real (@instHPow.{0, 0} Real Real Real.instPow)
+                      (@Nat.cast.{0} Real Real.instNatCast (Rat.den r)) (@Neg.neg.{0} Real Real.instNeg ν))))))))
+    (@OfNat.ofNat.{0} Real (nat_lit 2)
+      (@instOfNatAtLeastTwo.{0} Real (nat_lit 2) Real.instNatCast
+        (@Nat.instAtLeastTwoHAddOfNat (@OfNat.ofNat.{0} Nat (nat_lit 1) (instOfNatNat (nat_lit 1)))
+          (@Nat.instNeZeroSucc (@OfNat.ofNat.{0} Nat (nat_lit 0) (instOfNatNat (nat_lit 0))))))))
